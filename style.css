@@ -530,7 +530,7 @@ a {
 }
 
 a:visited {
-	color: purple;
+	/*color: purple;*/
 }
 
 a:hover,
@@ -937,3 +937,4 @@ object {
 .form-control{
 	height: 40px !important;
 }
+

@@ -50,6 +50,7 @@ function hometastic_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'hometastic' ),
+		'top' => esc_html__( 'Top', 'hometastic' ),
 	) );
 
 	/*
@@ -289,26 +290,59 @@ function my_column_action( $column ) {
 require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
 
 
-/**
- * This file represents an example of the code that themes would use to register
- * the required plugins.
- *
- * It is expected that theme authors would copy and paste this code into their
- * functions.php file, and amend to suit.
- *
- * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
- *
- * @package    TGM-Plugin-Activation
- * @subpackage Example
- * @version    2.5.2 for parent theme Home
- * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
- * @copyright  Copyright (c) 2011, Thomas Griffin
- * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
- * @link       https://github.com/TGMPA/TGM-Plugin-Activation
- */
 
-/**
- * Include the TGM_Plugin_Activation class.
- */
+
+add_filter('wp_nav_menu_items', 'add_login_logout_link', 10, 2); 
+
+function add_login_logout_link($items, $args) {  
+	if (is_user_logged_in() && $args->theme_location == 'top') {
+        $items .= '<div class="site-top-item"><a href="'. wp_logout_url(home_url()) .'"><i class="fa fa-user"></i> Log Out</a></div>';
+        
+    }
+    else if (!is_user_logged_in() && $args->theme_location == 'top') {
+        $items .= '<div class="site-top-item"><a href="'. site_url('login') .'"><i class="fa fa-user"></i> Log In</a></div>';
+        $items .= '<div class="site-top-item"><a href="'. site_url('register') .'"><i class="fa fa-pencil"></i> Register</a></div>';
+        
+    }
+    return $items;
+}
+
+add_filter('wp_nav_menu_items','add_search_box_to_menu', 10, 2);
+function add_search_box_to_menu( $items, $args ) {
+    if( $args->theme_location == 'top' )
+        return $items."<div class='site-top-item'><form action='http://example.com/' id='form-top-search' method='get'><input type='text' name='s'><input type='submit' value='Go'></form><a id='form-top-search-trigger' href='#''><i class='fa fa-search'></i></a></<div>";
+
+    return $items;
+}
+
+
+// Hook the appropriate WordPress action
+add_action('init', 'prevent_wp_login');
+
+function prevent_wp_login() {
+    // WP tracks the current page - global the variable to access it
+    global $pagenow;
+    // Check if a $_GET['action'] is set, and if so, load it into $action variable
+    $action = (isset($_GET['action'])) ? $_GET['action'] : '';
+    // Check if we're on the login page, and ensure the action is not 'logout'
+    if( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array($action, array('logout', 'lostpassword', 'rp'))))) {
+        // Load the home page url
+        $page = get_bloginfo('url');
+        // Redirect to the home page
+        wp_redirect($page);
+        // Stop execution to prevent the page loading for any reason
+        exit();
+    }
+}
+
+if (!wp_next_scheduled('my_task_hook')) {
+	wp_schedule_event( time(), 'daily', 'my_task_hook' );
+}
+
+add_action ( 'my_task_hook', 'my_task_function' );
+
+function my_task_function() {
+	echo 'I am a WordPress task. I will be called again tomorrow';
+} 
 
 ?>

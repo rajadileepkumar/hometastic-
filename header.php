@@ -18,6 +18,7 @@ $mobile = ot_get_option('mobile')
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/images/icon.png" type="image/png">
 
 <?php wp_head(); ?>
 <style>
@@ -156,19 +157,28 @@ $mobile = ot_get_option('mobile')
                     </span>
 				</div>
 				<div class="pull-right">
-                	<div class="site-top-item">
-                    	<a href="#"><i class="fa fa-user"></i> Log in</a>
-                    </div>
-                    <div class="site-top-item">
-                    	<a href="#"><i class="fa fa-pencil"></i> Sign in</a>
-                    </div>
-                    <div class="site-top-item">
-                    	<form id="form-top-search">
-                    		<input type="text" name="s">
-                            <input type="submit" value="Go">
-                        </form>
-                    	<a id="form-top-search-trigger" href="#"><i class="fa fa-search"></i></a>
-                	</div>
+                	<?php 
+						$defaults = array(
+							'theme_location'  => 'top',
+							'menu'            => '',
+							'container'       => '',
+							'container_class' => '',
+							'container_id'    => '',
+							'menu_class'      => '',
+							'menu_id'         => '',
+							'echo'            => true,
+							'fallback_cb'     => 'wp_page_menu',
+							'before'          => '',
+							'after'           => '',
+							'link_before'     => '',
+							'link_after'      => '',
+							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+							'depth'           => 0,
+							//'walker'          => new wp_bootstrap_navwalker(),
+						);
+						
+						wp_nav_menu( $defaults );
+					?>
                 </div>
 			</div>
 		</div><!--site top-->
@@ -180,9 +190,16 @@ $mobile = ot_get_option('mobile')
 				<div class="menu-button"><i class="fa fa-reorder"></i></div>
 				<nav class="menu-container underscore-container menu-container-fade">
 					<?php 
+						if( is_user_logged_in() ) {
+							$menu = 'logged-in';
+						} 
+						else {
+							$menu = 'Menu 1';
+						}
+
 						$defaults = array(
 							'theme_location'  => 'primary',
-							'menu'            => '',
+							'menu'            => $menu,
 							'container'       => 'ul',
 							'container_class' => '',
 							'container_id'    => '',

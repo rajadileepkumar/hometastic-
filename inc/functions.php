@@ -7,19 +7,27 @@ include_once (get_template_directory() . '/inc/shortcode.php');
 
 add_action( 'tgmpa_register', 'home_register_required_plugins' );
 /**
- * Register the required plugins for this theme.
+ * This file represents an example of the code that themes would use to register
+ * the required plugins.
  *
- * In this example, we register five plugins:
- * - one included with the TGMPA library
- * - two from an external source, one from an arbitrary source, one from a GitHub repository
- * - two from the .org repo, where one demonstrates the use of the `is_callable` argument
+ * It is expected that theme authors would copy and paste this code into their
+ * functions.php file, and amend to suit.
  *
- * The variable passed to tgmpa_register_plugins() should be an array of plugin
- * arrays.
+ * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
  *
- * This function is hooked into tgmpa_init, which is fired within the
- * TGM_Plugin_Activation class constructor.
+ * @package    TGM-Plugin-Activation
+ * @subpackage Example
+ * @version    2.5.2 for parent theme Home
+ * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
+ * @copyright  Copyright (c) 2011, Thomas Griffin
+ * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
+ * @link       https://github.com/TGMPA/TGM-Plugin-Activation
  */
+
+/**
+ * Include the TGM_Plugin_Activation class.
+ */
+
 function home_register_required_plugins() {
 	/*
 	 * Array of plugin arrays. Required keys are name and slug.
