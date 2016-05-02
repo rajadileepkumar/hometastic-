@@ -177,7 +177,7 @@ ul {
   left: 0;
 }
 #citation-section .bg-image {
-  background-image: url('../images/bg_citation.jpg');
+  background-image: url('../../images/bg_citation.jpg');
 }
 #footer-section {
   font-size: 12px;
@@ -341,7 +341,7 @@ ul {
   position: static;
 }
 #mobile-section .bg-image {
-  background-image: url('../images/bg_mobile.jpg');
+  background-image: url('../../images/bg_mobile.jpg');
 }
 #page-loader {
   position: fixed;
@@ -467,7 +467,7 @@ ul {
   z-index: 5;
 }
 .bg-image.bg-pattern:before {
-  background-image: url('../images/dot_pattern.png');
+  background-image: url('../../images/dot_pattern.png');
   opacity: 0.5;
   z-index: 1;
 }
@@ -476,7 +476,7 @@ ul {
   z-index: 10;
 }
 .bg-logo {
-  background-image: url('../images/bg_logo.png');
+  background-image: url('../../images/bg_logo.png');
   background-position: left center;
   background-repeat: no-repeat;
 }
@@ -551,7 +551,7 @@ ul {
   left: 13px;
   top: 50%;
   margin-top: -11px;
-  background-image: url('../images/google_play_icon.png');
+  background-image: url('../../images/google_play_icon.png');
   content: '';
 }
 .black-box.black-box-google .google-text {

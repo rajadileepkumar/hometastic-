@@ -8,6 +8,8 @@
  *
  * @package hometastic
  */
+$sample_text = ot_get_option('sample_text');
+$mobile = ot_get_option('mobile')
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -147,10 +149,10 @@
 			<div class="container clearfix">
 				<div class="pull-left">
 					<span class="site-top-item">
-                        <a href="#"><i class="fa fa-envelope"></i> info@hometastic.com</a>
+                        <a href="#"><i class="fa fa-envelope"></i> <?php if($sample_text){echo $sample_text;}else{echo 'info@hometastic.com';}?></a>
                     </span>
                     <span class="site-top-item">
-                        <i class="fa fa-phone"></i> 0 800 55 55 123
+                        <i class="fa fa-phone"></i> <?php if($mobile){echo $mobile;}else{echo '0 800 55 55 123';}?>
                     </span>
 				</div>
 				<div class="pull-right">
@@ -169,14 +171,12 @@
                 	</div>
                 </div>
 			</div>
-		</div>
+		</div><!--site top-->
 		<div class="main-menu">
 			<div class="container">
-				<!-- <h1 class="site-title"> -->
-					<!-- <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> -->
-						<img src="<?php echo get_template_directory_uri()?>/images/logo.png" class="pull-left main-logo" alt="<?php echo bloginfo('name');?>">
-					<!-- </a> -->
-				<!-- </h1> -->
+				<a href="<?php echo site_url();?>">
+					<img src="<?php echo get_template_directory_uri()?>/images/logo.png" class="pull-left main-logo" alt="<?php echo bloginfo('name');?>">
+				</a>
 				<div class="menu-button"><i class="fa fa-reorder"></i></div>
 				<nav class="menu-container underscore-container menu-container-fade">
 					<?php 
@@ -200,7 +200,7 @@
 						);
 						wp_nav_menu( $defaults );
 					?>
-					<?php //wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+					<div class="underscore"><div class="underscore-inner"></div></div>
 				</nav>
 			</div>
 		</div>

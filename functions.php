@@ -7,6 +7,11 @@
  * @package hometastic
  */
 
+/**
+ *Load functions custom post types and metaboxes
+ */
+include_once("inc/functions.php");
+
 if ( ! function_exists( 'hometastic_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -76,6 +81,8 @@ function hometastic_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+	add_post_type_support( 'page', 'excerpt' );
 }
 endif;
 add_action( 'after_setup_theme', 'hometastic_setup' );
@@ -107,6 +114,51 @@ function hometastic_widgets_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
+
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Widget 1', 'hometastic' ),
+		'id'            => 'footer-sidebar1',
+		'description'   => '',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Widget 2', 'hometastic' ),
+		'id'            => 'footer-sidebar2',
+		'description'   => '',
+		'before_widget' => '<ul class="list-links-simple">',
+		'after_widget'  => '</ul>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Widget 3', 'hometastic' ),
+		'id'            => 'footer-sidebar3',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
+
+	register_sidebar( array(
+		'name'          => esc_html__( 'Footer Widget 4', 'hometastic' ),
+		'id'            => 'footer-sidebar4',
+		'description'   => '',
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
+
 }
 add_action( 'widgets_init', 'hometastic_widgets_init' );
 
@@ -204,7 +256,59 @@ require get_template_directory() . '/inc/extras.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+
+
 /**
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+add_filter( 'manage_edit-post_columns', 'my_columns_filter', 10, 1 );
+function my_columns_filter( $columns ) {
+ 	$column_thumbnail = array( 'thumbnail' => 'Thumbnail' );
+	$column_wordcount = array( 'wordcount' => 'Word count' );
+	$columns = array_slice( $columns, 0, 1, true ) + $column_thumbnail + array_slice( $columns, 1, NULL, true );
+	$columns = array_slice( $columns, 0, 3, true ) + $column_wordcount + array_slice( $columns, 3, NULL, true );
+	return $columns;
+}
+
+add_action( 'manage_posts_custom_column', 'my_column_action', 10, 1 );
+function my_column_action( $column ) {
+	global $post;
+	switch ( $column ) {
+		case 'thumbnail':
+			echo get_the_post_thumbnail( $post->ID, 'edit-screen-thumbnail' );
+			break;
+		case 'wordcount':
+			echo str_word_count( $post->post_content );
+			break;
+	}
+}
+
+
+require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
+
+
+/**
+ * This file represents an example of the code that themes would use to register
+ * the required plugins.
+ *
+ * It is expected that theme authors would copy and paste this code into their
+ * functions.php file, and amend to suit.
+ *
+ * @see http://tgmpluginactivation.com/configuration/ for detailed documentation.
+ *
+ * @package    TGM-Plugin-Activation
+ * @subpackage Example
+ * @version    2.5.2 for parent theme Home
+ * @author     Thomas Griffin, Gary Jones, Juliette Reinders Folmer
+ * @copyright  Copyright (c) 2011, Thomas Griffin
+ * @license    http://opensource.org/licenses/gpl-2.0.php GPL v2 or later
+ * @link       https://github.com/TGMPA/TGM-Plugin-Activation
+ */
+
+/**
+ * Include the TGM_Plugin_Activation class.
+ */
+
+?>
