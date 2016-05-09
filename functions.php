@@ -160,6 +160,16 @@ function hometastic_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 
+	register_sidebar( array(
+		'name'          => esc_html__( 'Recent Properties', 'hometastic' ),
+		'id'            => 'property-sidebar',
+		'description'   => '',
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	) );
+
 }
 add_action( 'widgets_init', 'hometastic_widgets_init' );
 
@@ -344,5 +354,6 @@ add_action ( 'my_task_hook', 'my_task_function' );
 function my_task_function() {
 	echo 'I am a WordPress task. I will be called again tomorrow';
 } 
+
 
 ?>

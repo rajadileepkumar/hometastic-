@@ -30,6 +30,19 @@ get_header();?>
         </div>
    	</div>
 </section>
+<section>
+	<div class="section-content">
+		<div class="container">
+			<div class="section-header onscroll-animate" data-animation="fadeInLeft">
+    			<h1>Recent Listings</h1>
+                <h4>See our recent listings here, you will find all kinds of homes.</h4>
+    		</div>
+    		<div class="row">
+    			<?php if(dynamic_sidebar('property-sidebar'));?>
+    		</div>
+		</div>
+	</div>
+</section>
 <div class="margin-30 visible-lg-block visible-md-block"></div>
 <section id="mobile-section" class="section-contrast">
 	<div class="bg-image bg-pattern bg-cover bg-fixed">

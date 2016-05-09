@@ -938,3 +938,58 @@ object {
 	height: 40px !important;
 }
 
+#wpadminbar #wp-admin-bar-wp-logo>.ab-item{
+	display: none;
+}
+
+.error_pagenotfound{
+	-moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #fff;
+    border-color: #eee;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px 1px 5px;
+    font-family: "Open Sans",sans-serif;
+    margin: 0 auto;
+    padding: 50px 30px 58px;
+    text-align: center;
+    width: 59%;
+}
+
+.error_pagenotfound strong{
+	color: #e3e3e3;
+    display: block;
+    font-size: 145px;
+    font-weight: normal;
+    line-height: 100px;
+    margin-bottom: 10px;
+}
+
+.error_pagenotfound b{
+	color: #999;
+    display: block;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 50px;
+    margin: 0;
+
+}
+
+.error_pagenotfound em{
+	color: #fc4242;
+    display: block;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 59px;
+    margin: 0;
+}
+
+a.but_goback{
+	/*background: #fc4242 none repeat scroll 0 0;*/
+    /*border-bottom: 1px solid #999;*/
+    margin: 0;
+    padding: 13px 25px 13px 22px;
+}

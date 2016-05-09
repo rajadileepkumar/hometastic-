@@ -9,54 +9,25 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area container">
 		<main id="main" class="site-main" role="main">
-
+			<div class="margin-50 visible-lg-block visible-md-block"></div>
 			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'hometastic' ); ?></h1>
-				</header><!-- .page-header -->
+				<div class="error_pagenotfound">
+					<strong><?php _e('404','home');?></strong>
+					<br />
+					<b><?php _e('Oops... Page Not Found!','home');?></b>
 
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'hometastic' ); ?></p>
+					<em><?php _e('Sorry the Page Could not be Found here.','home');?></em>
 
-					<?php
-						get_search_form();
+					<p><?php _e('Try using the button below to go to main page of the site','home');?></p>
 
-						the_widget( 'WP_Widget_Recent_Posts' );
+					<div class="clearfix margin_top3"></div>
 
-						// Only show the widget if site has multiple categories.
-						if ( hometastic_categorized_blog() ) :
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'hometastic' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-						endif;
-
-						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'hometastic' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-						the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-				</div><!-- .page-content -->
+					<a href="javascript:window.history.back()" class="but_goback"><i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; <?php _e('Go Back','home');?></a>
+				</div><!-- end error page notfound -->
 			</section><!-- .error-404 -->
-
+			<div class="margin-50 visible-lg-block visible-md-block"></div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

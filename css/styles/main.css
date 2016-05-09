@@ -1085,7 +1085,7 @@ ul {
   float: right;
 }
 .listing-price {
-  font-size: 26px;
+  font-size: 16px;
   font-weight: bold;
   color: #000;
 }
@@ -1537,10 +1537,11 @@ ul {
 .post-preview .post-preview-heading,
 .post-preview-alt .post-preview-heading {
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: 12px;
   color: #000;
   margin-top: 25px;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 .post-preview .post-preview-heading a,
 .post-preview-alt .post-preview-heading a {

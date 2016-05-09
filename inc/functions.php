@@ -6,6 +6,8 @@ include_once (get_template_directory() . '/inc/custom-post/agent.php');
 include_once (get_template_directory() . '/inc/shortcode.php');
 
 add_action( 'tgmpa_register', 'home_register_required_plugins' );
+
+
 /**
  * This file represents an example of the code that themes would use to register
  * the required plugins.
