@@ -993,3 +993,7 @@ a.but_goback{
     margin: 0;
     padding: 13px 25px 13px 22px;
 }
+
+textarea.form-control{
+	height: 125px !important;
+}

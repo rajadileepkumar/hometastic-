@@ -1008,8 +1008,9 @@ ul {
 }
 .list-checkbox {
   overflow: auto;
-  font-size: 16px;
+  font-size: 12px;
   color: #343434;
+  font-weight: 700;
 }
 .list-checkbox li {
   position: relative;
